@@ -2,10 +2,13 @@ package com.generation.bloco02.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -31,7 +34,9 @@ public class Produtos {
 	@NotNull
 	@Min(value = 0)
 	private int quantidade;
-
+	@ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private Categorias categorias;
 
 	public Long getId() {
 		return id;
@@ -71,5 +76,13 @@ public class Produtos {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public Categorias getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Categorias categorias) {
+		this.categorias = categorias;
 	}
 }
