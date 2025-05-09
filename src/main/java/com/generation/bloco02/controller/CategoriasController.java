@@ -29,8 +29,11 @@ import jakarta.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriasController {
 
-	@Autowired
-	private CategoriasRepository categoriasRepository;
+	private final CategoriasRepository categoriasRepository;
+
+	public CategoriasController(CategoriasRepository categoriasRepository) {
+		this.categoriasRepository = categoriasRepository;
+	}
 
 	@GetMapping
 	public ResponseEntity<List<Categorias>> getAll() {

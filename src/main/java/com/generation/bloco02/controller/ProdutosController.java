@@ -28,11 +28,14 @@ import jakarta.validation.Valid;
 @RequestMapping("/produtos")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutosController {
-	@Autowired
-	private ProdutosRepository produtosRepository;
+	private final ProdutosRepository produtosRepository;
 
-	@Autowired
-	private CategoriasRepository categoriasRepository;
+	private final CategoriasRepository categoriasRepository;
+
+	public ProdutosController(ProdutosRepository produtosRepository, CategoriasRepository categoriasRepository) {
+		this.produtosRepository = produtosRepository;
+		this.categoriasRepository = categoriasRepository;
+	}
 
 	@GetMapping
 	public ResponseEntity<List<Produtos>> getAll() {
