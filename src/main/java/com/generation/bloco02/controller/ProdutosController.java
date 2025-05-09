@@ -3,7 +3,6 @@ package com.generation.bloco02.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,7 +43,7 @@ public class ProdutosController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Produtos> getById(@PathVariable Long id) {
-		return produtosRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+		return produtosRepository.findById(id).map(ResponseEntity::ok)
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
